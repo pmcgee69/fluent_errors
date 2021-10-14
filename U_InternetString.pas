@@ -4,9 +4,12 @@ interface
 uses U_Maybe;
 
 type
+  TFailMode = (fail,succeed);
+
   Internetstring = record
-     str : maybe<string>;
-     function   clear                     : Internetstring;
+     str      : maybe<string>;
+     fail_mode: TFailMode;
+     function   clear(fm:TFailMode)       : Internetstring;
      function   print                     : boolean;
      function   get_res_name(path:string) : Internetstring;
      function   get_res_type(path:string) : Internetstring;
@@ -25,8 +28,13 @@ implementation
   function   Internetstring.get_res_type(path:string) : Internetstring;
   begin
      if not str.err then
-        if path=''  then Self.str.err := true
-                    else Self.str.val := Self.str.val + 'bbb.';
+        case Self.fail_mode of
+           Fail :
+              if path=''  then Self.str.err := true
+                          else Self.str.val := Self.str.val + 'bbb.';
+           Succeed :
+              if path<>'' then Self.str.val := Self.str.val + 'bbb.';
+        end;
      result := Self;
   end;
 
@@ -36,10 +44,11 @@ implementation
      result := Self;
   end;
 
-  function Internetstring.Clear : Internetstring;
+  function Internetstring.Clear(fm:TFailMode) : Internetstring;
   begin
-    Self.str.err := false;
-    Self.str.val := '';
+    Self.fail_mode := fm;
+    Self.str.err   := false;
+    Self.str.val   := '';
     result := Self;
   end;
 

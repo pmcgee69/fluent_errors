@@ -17,7 +17,7 @@ implementation
   function print_maybe(ms:maybe<string>):boolean;
   begin
      result := not ms.err;
-     if result then  writeln(ms.val);
+     if result then  begin writeln(ms.val); writeln; end;
   end;
 
 
