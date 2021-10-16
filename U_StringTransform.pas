@@ -7,12 +7,12 @@ type
   Transformstring = class
      str      : TMaybe<ansistring>;
      int      : TMaybe<integer>;
-     function   clear(s:ansistring)       : Transformstring;
-     function   trunc(i:integer)          : Transformstring;
-     function   hextoint                  : Transformstring;
-     function   id                        : Transformstring;
-     function   sprint                    : ansistring;
-     function   iprint                    : ansistring;
+     function   clear(s:ansistring)       : Transformstring;    virtual;
+     function   trunc(i:integer)          : Transformstring;    virtual;
+     function   hextoint                  : Transformstring;    virtual;
+     function   id                        : Transformstring;    virtual;
+     function   sprint                    : ansistring;         virtual;
+     function   iprint                    : ansistring;         virtual;
   end;
 
 
@@ -31,10 +31,8 @@ uses
 
   function    Transformstring.trunc(i:integer) : Transformstring;
   begin
-     var ts := Transformstring.Create;
-     ts := Self;
-     if not str.err then ts.str.val := leftstr(str.val,4);
-     result := ts;
+     if not str.err then str.val := leftstr(str.val,4);
+     result := Self;
   end;
 
 
@@ -57,7 +55,7 @@ uses
   function  Transformstring.sprint: ansistring;
   begin
     if not Self.str.err then result := Self.str.val
-                        else result := '';
+                        else result := '    ';
   end;
 
   function  Transformstring.iprint: ansistring;

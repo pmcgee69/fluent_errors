@@ -1,16 +1,16 @@
 unit U_Common;
 
 interface
-uses      U_Maybe;
+uses      U_Maybe, System.SysUtils;
 
 procedure err(s:string);
-
 function  rand_str:ansistring;
-
 function  hextomaybeint(s:ansistring) : TMaybe<integer>;
-
+procedure Timer( p : TProc);
 
 implementation
+uses
+  System.Diagnostics;
 
 
 procedure err(s:string);   begin  writeln(#10+#13+s+#10+#13);  end;
@@ -48,6 +48,15 @@ begin
            inc(p);
        end;
        result := i;
+end;
+
+procedure Timer( p : TProc);
+begin
+   var T := TStopwatch.Create;
+   T.Start;
+   p;
+   T.Stop;
+   err( 'ms : ' + T.ElapsedMilliseconds.ToString );
 end;
 
 
