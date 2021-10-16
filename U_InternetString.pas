@@ -2,7 +2,7 @@ unit U_InternetString;
 
 interface
 uses U_Maybe;
-
+(*
 type
   TFailMode = (fail,succeed);
 
@@ -16,9 +16,9 @@ type
      function   get_res_next(path:string) : Internetstring;
   end;
 
-
+*)
 implementation
-
+(*
   function   Internetstring.get_res_name(path:string) : Internetstring;
   begin
      if not str.err then Self.str.val := Self.str.val + 'aaa.';
@@ -56,6 +56,6 @@ implementation
   begin
     result := print_maybe(Self.str);
   end;
-
+*)
 
 end.
