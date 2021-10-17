@@ -2,13 +2,11 @@ program Fluent_error;
 {$APPTYPE CONSOLE}
 
 uses
-  System.SysUtils, rtti,
-  U_InternetString in 'U_InternetString.pas',
+  System.SysUtils,
+  rtti,
   U_StringTransform in 'U_StringTransform.pas',
   U_Maybe in 'U_Maybe.pas',
-  U_Common in 'U_Common.pas',
-  U_foo in 'U_foo.pas',
-  U_Intercept in 'U_Intercept.pas';
+  U_Common in 'U_Common.pas';
 
 const     arr_size = 1000000;
 
@@ -17,10 +15,10 @@ type      arrT = array [1..arr_size] of Transformstring;
 
 var       arr  : arrT;
           arr2 : arrI;
+          X    : Transformstring;
 
 begin
    //ReportMemoryLeaksOnShutdown := true;
-   //Cept.Intercept_tstring<TFoo>(Workingwithfoo );
 
    for var i := 1 to arr_size do
        begin arr [i] := Transformstring.Create;
@@ -36,11 +34,13 @@ begin
    writeln('-');
 
    var vmi := TVirtualMethodInterceptor.Create(Transformstring);
+   (*
    vmi.OnBefore := procedure(  Instance  : TObject;        Method: TRttiMethod;
                                const Args: TArray<TValue>; out DoInvoke: Boolean;  out Result: TValue     )
                       begin
                         //Write('[before] ', Method.Name,'  ');
                       end;
+   *)
    Timer( procedure
           begin  for var i := 1 to arr_size do  begin   //
                         vmi.Proxify( arr[i] );

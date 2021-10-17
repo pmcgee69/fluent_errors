@@ -87,12 +87,9 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="U_InternetString.pas"/>
         <DCCReference Include="U_StringTransform.pas"/>
         <DCCReference Include="U_Maybe.pas"/>
         <DCCReference Include="U_Common.pas"/>
-        <DCCReference Include="U_foo.pas"/>
-        <DCCReference Include="U_Intercept.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
