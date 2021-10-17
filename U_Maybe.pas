@@ -8,6 +8,8 @@ type
        val  : T;
   end;
 
+const
+  fail_int : TMaybe<integer> = (err: True; val: -2);
 
 function print_maybe(ms:TMaybe<string>):boolean;
 

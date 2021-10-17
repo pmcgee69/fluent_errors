@@ -19,7 +19,12 @@ begin
    quickcheck(arr, arr2);
 
    Timer( procedure begin  for var i := 1 to arr_size do begin
-                               arr2[i] := arr[i].trunc(4).hextoint.int;
+                               //arr2[i] := arr[i].trunc(4).hextoint.int;
+                               try
+                                 arr2[i] := arr[i].trunc(4).hextoint.int;
+                               except
+                                 arr2[i] := fail_int;
+                               end;
                            end;
                     end );
 
@@ -27,18 +32,24 @@ begin
    quickcheck(arr, arr2);
 
    var vmi := TVirtualMethodInterceptor.Create(Transformstring);
+   (*
    vmi.OnBefore := procedure(  Instance  : TObject;        Method: TRttiMethod;
                                const Args: TArray<TValue>; out DoInvoke: Boolean;  out Result: TValue     )
                       begin
                         //Write('[before] ', Method.Name,'  ');
                       end;
+   *)
    X := Transformstring.Create;
    vmi.Proxify( X );
 
    Timer( procedure
           begin  for var i := 1 to arr_size do  begin
                          X := arr[i];
-                         arr2[i] := X.trunc(4).hextoint.int;
+                         try
+                           arr2[i] := X.trunc(4).hextoint.int;
+                         except
+                           arr2[i] := fail_int;
+                         end;
                  end;
           end );
    vmi.Free;

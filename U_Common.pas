@@ -42,7 +42,7 @@ begin
                 '0'..'9' :  i.val := i.val*16 + ord(ch)-ord('0');
                 'A'..'F' :  i.val := i.val*16 + ord(ch)-ord('A') + 10;
                 'G'..'J' :  begin i.err := true;
-                                  i.val := 0;
+                                  i.val := -2;
                             end;
            end;
            inc(p);
