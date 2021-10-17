@@ -15,6 +15,9 @@ type
      function   iprint                    : ansistring;         virtual;
   end;
 
+procedure quickcheck(const arr : array of Transformstring; const arr2 : array of TMaybe<integer>);
+procedure cleararray(var   arr : array of Transformstring; var   arr2 : array of TMaybe<integer>; arr_size:integer);
+
 
 implementation
 uses
@@ -62,6 +65,21 @@ uses
   begin
     if not Self.str.err then result := Self.int.val.ToString
                         else result := '';
+  end;
+
+
+  procedure quickcheck(const arr : array of Transformstring; const arr2 : array of TMaybe<integer>);
+  begin
+    for var i := 1 to 15 do begin  writeln(arr[i].sprint, '  ', arr2[i].val);   end;
+  end;
+
+  procedure cleararray(var   arr : array of Transformstring; var   arr2 : array of TMaybe<integer>; arr_size:integer);
+  begin
+    for var i := 0 to arr_size-1 do           /// @#$%@ general arrays are 0-indexed :)
+       begin arr [i].clear(rand_str);
+             arr2[i].val := -1;
+             arr2[i].err := false;
+       end;
   end;
 
 

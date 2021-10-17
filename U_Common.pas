@@ -8,10 +8,10 @@ function  rand_str:ansistring;
 function  hextomaybeint(s:ansistring) : TMaybe<integer>;
 procedure Timer( p : TProc);
 
+
 implementation
 uses
   System.Diagnostics;
-
 
 procedure err(s:string);   begin  writeln(#10+#13+s+#10+#13);  end;
 
@@ -58,6 +58,5 @@ begin
    Tm.Stop;
    err( 'ms : ' + Tm.ElapsedMilliseconds.ToString );
 end;
-
 
 end.
