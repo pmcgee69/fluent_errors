@@ -19,7 +19,6 @@ begin
    quickcheck(arr, arr2);
 
    Timer( procedure begin  for var i := 1 to arr_size do begin
-                               //arr2[i] := arr[i].trunc(4).hextoint.int;
                                try
                                  arr2[i] := arr[i].trunc(4).hextoint.int;
                                except
@@ -45,11 +44,7 @@ begin
    Timer( procedure
           begin  for var i := 1 to arr_size do  begin
                          X := arr[i];
-                         try
-                           arr2[i] := X.trunc(4).hextoint.int;
-                         except
-                           arr2[i] := fail_int;
-                         end;
+                         arr2[i] := X.trunc(4).hextoint.int;
                  end;
           end );
    vmi.Free;
