@@ -91,6 +91,8 @@
         <DCCReference Include="U_StringTransform.pas"/>
         <DCCReference Include="U_Maybe.pas"/>
         <DCCReference Include="U_Common.pas"/>
+        <DCCReference Include="U_foo.pas"/>
+        <DCCReference Include="U_Intercept.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -113,6 +115,12 @@
                 </Source>
             </Delphi.Personality>
             <Deployment Version="3">
+                <DeployFile LocalName="Win32\Release\Fluent_error.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>Fluent_error.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\iossimulator\libpcre.dylib" Class="DependencyModule">
                     <Platform Name="iOSSimulator">
                         <Overwrite>true</Overwrite>

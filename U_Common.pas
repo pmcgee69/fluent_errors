@@ -52,11 +52,11 @@ end;
 
 procedure Timer( p : TProc);
 begin
-   var T := TStopwatch.Create;
-   T.Start;
+   var Tm := TStopwatch.Create;
+   Tm.Start;
    p;
-   T.Stop;
-   err( 'ms : ' + T.ElapsedMilliseconds.ToString );
+   Tm.Stop;
+   err( 'ms : ' + Tm.ElapsedMilliseconds.ToString );
 end;
 
 
