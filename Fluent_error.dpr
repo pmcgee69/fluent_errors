@@ -9,8 +9,6 @@ const     arr_size = 100000;
 type      arrT = array [1..arr_size] of Transformstring;
           arrI = array [1..arr_size] of TMaybe<integer>;
 
-          Tvmi = array [1..arr_size] of TVirtualMethodInterceptor;
-
 var       arr  : arrT;
           arr2 : arrI;
 
@@ -42,16 +40,7 @@ begin
                               write(' err  ');
                    }  end;
    *)
-   (*
-   var vmi : Tvmi;
-   Timer( procedure
-          begin  for var i := 1 to arr_size do  begin
-                     vmi[i] := TVirtualMethodInterceptor.Create(Transformstring);
-                     //vmi[i].Proxify( arr[i] )
-                     end;
-          end );
-   writeln('prepped');
-   *)
+
    Timer( procedure
           begin  for var i := 1 to arr_size do  begin
                          vmi.Proxify( arr[i] );
@@ -60,8 +49,7 @@ begin
           end );
    vmi.Free;
    quickcheck(arr, arr2);   writeln('-');
-readln;
-   //Timer( procedure begin  for var i := 1 to arr_size do  vmi[i].free;    end );
+
    Timer( procedure begin  for var i := 1 to arr_size do  arr[i].Free;    end );
    writeln('done.');
    readln;
