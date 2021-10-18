@@ -32,7 +32,7 @@ begin
    quickcheck(arr, arr2);   writeln('-');   cleararray(arr, arr2, arr_size);
    quickcheck(arr, arr2);
 
-   //var vmi := TVirtualMethodInterceptor.Create(Transformstring);
+   var vmi := TVirtualMethodInterceptor.Create(Transformstring);
    (*
    vmi.OnBefore := procedure(  Instance  : TObject;        Method: TRttiMethod;
                                const Args: TArray<TValue>; out DoInvoke: Boolean;  out Result: TValue     )
@@ -42,7 +42,7 @@ begin
                               write(' err  ');
                    }  end;
    *)
-
+   (*
    var vmi : Tvmi;
    Timer( procedure
           begin  for var i := 1 to arr_size do  begin
@@ -51,17 +51,17 @@ begin
                      end;
           end );
    writeln('prepped');
-
+   *)
    Timer( procedure
           begin  for var i := 1 to arr_size do  begin
-                         vmi[i].Proxify( arr[i] );
+                         vmi.Proxify( arr[i] );
                          arr2[i] := arr[i].trunc(4).hextoint.int;
                  end;
           end );
-   //vmi.Free;
+   vmi.Free;
    quickcheck(arr, arr2);   writeln('-');
 readln;
-   Timer( procedure begin  for var i := 1 to arr_size do  vmi[i].free;    end );
+   //Timer( procedure begin  for var i := 1 to arr_size do  vmi[i].free;    end );
    Timer( procedure begin  for var i := 1 to arr_size do  arr[i].Free;    end );
    writeln('done.');
    readln;
