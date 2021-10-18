@@ -19,13 +19,17 @@ procedure err(s:string);   begin  writeln(#10+#13+s+#10+#13);  end;
 function  rand_str:ansistring;
 begin
    var s:ansistring :='';
-   for var i:=1 to 8 do begin
-       var c:= Random(20);
-       case c of
-             0.. 9 : s := s + ansichar(c+48);  //  '0'..'9'
-            10..19 : s := s + ansichar(c+55);  //  'A'..'J'
+   for var i:=1 to 8 do
+       begin     var c:= Random(100);
+                 if (c>95) then     s := s + ansichar(c-25)   //  'G'..'J'  // 4-in-100 error
+                 else begin
+                      c := c mod 16;
+                      case c of
+                            0.. 9 : s := s + ansichar(c+48);  //  '0'..'9'
+                           10..15 : s := s + ansichar(c+55);  //  'A'..'F'
+                      end;
+                 end;
        end;
-   end;
    result := s;
 end;
 
